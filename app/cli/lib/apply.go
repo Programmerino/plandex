@@ -317,16 +317,17 @@ func handleApplyScript(
 	}
 }
 
-var shellShebangs = map[string]string{
-	"/bin/bash": `#!/bin/bash
-`,
-	"/bin/zsh": `#!/bin/zsh
-`,
-}
-
-var applyScriptErrorHandling = map[string]string{
-	"/bin/bash": `set -euo pipefail`,
-	"/bin/zsh":  `set -euo pipefail`,
+// getShellName extracts the shell name from a shell path
+func getShellName(shellPath string) string {
+	// Extract just the shell name from the path (e.g., "bash" from "/bin/bash" or "/run/current-system/sw/bin/bash")
+	base := filepath.Base(shellPath)
+	// Common shell names we support
+	switch base {
+	case "bash", "zsh", "sh":
+		return base
+	default:
+		return "bash" // fallback to bash
+	}
 }
 
 func execApplyScript(
@@ -377,16 +378,12 @@ func execApplyScript(
 		shell = "/bin/bash" // fallback
 	}
 
-	// Get appropriate header
-	shebang := shellShebangs[shell]
-	if shebang == "" {
-		shebang = shellShebangs["/bin/bash"] // fallback if shell not supported
-	}
-	errorHandling := applyScriptErrorHandling[shell]
-
-	if errorHandling == "" {
-		errorHandling = applyScriptErrorHandling["/bin/bash"] // fallback if shell not supported
-	}
+	// Get shell name and generate portable shebang
+	shellName := getShellName(shell)
+	shebang := fmt.Sprintf("#!/usr/bin/env %s\n", shellName)
+	
+	// Error handling works for both bash and zsh
+	errorHandling := `set -euo pipefail`
 
 	header := shebang + "\n" + errorHandling
 	content = header + "\n" + strings.Join(filteredLines, "\n")
