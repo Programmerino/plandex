@@ -79,6 +79,10 @@ func ModelRequest(
 	}
 
 	baseModelConfig := modelConfig.GetBaseModelConfig(authVars, settings, orgUserConfig)
+	
+	if baseModelConfig == nil {
+		return nil, fmt.Errorf("no model provider available for %s - please check your API keys and model configuration", modelConfig.Role)
+	}
 
 	messages = FilterEmptyMessages(messages)
 	messages = CheckSingleSystemMessage(modelConfig, baseModelConfig, messages)
@@ -282,7 +286,7 @@ func FilterEmptyMessages(messages []types.ExtendedChatMessage) []types.ExtendedC
 }
 
 func CheckSingleSystemMessage(modelConfig *shared.ModelRoleConfig, baseModelConfig *shared.BaseModelConfig, messages []types.ExtendedChatMessage) []types.ExtendedChatMessage {
-	if len(messages) == 1 && baseModelConfig.SingleMessageNoSystemPrompt {
+	if baseModelConfig != nil && len(messages) == 1 && baseModelConfig.SingleMessageNoSystemPrompt {
 		if messages[0].Role == openai.ChatMessageRoleSystem {
 			msg := messages[0]
 			msg.Role = openai.ChatMessageRoleUser
