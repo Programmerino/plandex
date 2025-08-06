@@ -105,6 +105,66 @@ Loading files manually when using automatic context loading can sometimes be use
 
 Another use for manual context loading is for context types that can't be loaded automatically, like URLs, notes, or piped data (for now Plandex can only automatically load project files and images within the project).
 
+## Global Context
+
+Global context is a feature that allows you to define context that is automatically loaded into every new plan you create. This is useful for information that should always be available across all your plans, such as:
+
+- **System environment specifications** (e.g., NixOS configurations, Docker setups)
+- **Coding standards and conventions** for your team or project
+- **Common configuration** that applies to multiple projects
+- **API documentation** or reference materials you frequently need
+- **Best practices** or guidelines specific to your organization
+
+### Setting Global Context
+
+You can set your global context using the `plandex global-context` command:
+
+```bash
+# Set from a file
+plandex global-context set context.md
+
+# Set from stdin
+plandex global-context set < context.md
+
+# Set from pipe
+cat context.md | plandex global-context set
+```
+
+### Viewing and Managing Global Context
+
+```bash
+# View current global context
+plandex global-context show
+
+# Clear global context
+plandex global-context clear
+```
+
+### How Global Context Works
+
+When you create a new plan, your global context is automatically loaded as a note in the plan's context. This happens before any other context loading, ensuring it's always available to the LLM.
+
+The global context is stored on the Plandex server and associated with your user account, so it's available across all devices where you're logged in.
+
+### Overriding Global Context
+
+Sometimes you may want to create a plan without your global context, or with different global context. You can control this behavior when creating a new plan:
+
+```bash
+# Create a plan without global context
+plandex new --no-global-context
+
+# Create a plan with a different global context file
+plandex new --global-context-file special-context.md
+```
+
+### Best Practices
+
+- **Keep it concise**: Global context is loaded into every plan, so keep it focused on truly universal information
+- **Use markdown**: Format your global context file with clear headers and sections for better LLM comprehension
+- **Update regularly**: As your project evolves, remember to update your global context to reflect current standards
+- **Team alignment**: Consider sharing global context files with your team to ensure consistency
+
 ## Manually Loading Context
 
 To load files, directories, directory layouts, urls, images, notes, or piped data into a plan's context, use the `plandex load` command.

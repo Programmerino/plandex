@@ -92,6 +92,10 @@ plandex new -n new-plan # with name
 
 `--context-dir/-d`: Base directory to load context from when auto-loading context is enabled. Defaults to `.` (current directory). Set a different directoy if you don't want all files to be included in the project map.
 
+`--no-global-context`: Don't load the global context for this plan.
+
+`--global-context-file`: Override the global context with content from the specified file.
+
 `--no-auto`: Start the plan with auto-mode 'None' (step-by-step, no automation).
 
 `--basic`: Start the plan with auto-mode 'Basic' (auto-continue plans, no other automation).
@@ -289,6 +293,27 @@ Remove all context.
 ```bash
 plandex clear
 ```
+
+### global-context
+
+Manage global user context that is automatically loaded into every new plan.
+
+```bash
+plandex global-context set context.md       # Set global context from a file
+plandex global-context set < context.md     # Set from stdin
+cat context.md | plandex global-context set # Set from pipe
+plandex global-context show                 # Display current global context
+plandex global-context clear                # Remove global context
+pdx gc set context.md                       # 'gc' is an alias for 'global-context'
+```
+
+The global context is automatically loaded as a note in every new plan you create. This is useful for:
+- System environment specifications (e.g., NixOS configurations)
+- Project-wide coding standards and conventions
+- Common API keys or configuration that should be available in all plans
+- Team-specific guidelines or best practices
+
+You can override this behavior when creating a new plan using the `--no-global-context` or `--global-context-file` flags with `plandex new`.
 
 ## Control
 
