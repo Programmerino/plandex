@@ -145,7 +145,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
 			ReservedOutputTokens: 20000, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{IsBaseVariant: true},
@@ -203,7 +203,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
 			ReservedOutputTokens: 40000, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{IsBaseVariant: true},
@@ -231,7 +231,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
 			ReservedOutputTokens: 20000, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{IsBaseVariant: true},
@@ -259,7 +259,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
 			ReservedOutputTokens: 20000, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderAnthropic, ModelName: "anthropic/claude-3-5-sonnet-latest"},
@@ -276,7 +276,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 8192,
 			ReservedOutputTokens: 8192, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderAnthropic, ModelName: "anthropic/claude-3-5-haiku-latest"},
@@ -292,7 +292,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 75000, MaxTokens: 2000000,
 			MaxOutputTokens: 8192, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderGoogleAIStudio, ModelName: "gemini/gemini-1.5-pro"},
@@ -307,7 +307,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 75000, MaxTokens: 1048576,
 			MaxOutputTokens: 65535, ReservedOutputTokens: 65535,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderGoogleAIStudio, ModelName: "gemini/gemini-2.5-pro"},
@@ -322,7 +322,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 75000, MaxTokens: 1048576,
 			MaxOutputTokens: 65535, ReservedOutputTokens: 65535,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{IsBaseVariant: true},
@@ -349,7 +349,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 7500, MaxTokens: 64000,
 			MaxOutputTokens: 8192, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderDeepSeek, ModelName: "deepseek/deepseek-chat"},
@@ -363,7 +363,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 7500, MaxTokens: 164000,
 			MaxOutputTokens: 33000, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{VariantTag: "visible", IsDefaultVariant: true, Description: "(reasoning visible)", Overrides: BaseModelShared{IncludeReasoning: true}},
@@ -381,7 +381,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 131072,
 			MaxOutputTokens: 131072, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/deepseek-r1:70b"},
@@ -394,7 +394,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 131072,
 			MaxOutputTokens: 131072, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/deepseek-r1:32b"},
@@ -407,7 +407,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 131072,
 			MaxOutputTokens: 131072, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/deepseek-r1:14b"},
@@ -420,7 +420,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 131072,
 			MaxOutputTokens: 131072, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/deepseek-r1:8b"},
@@ -434,7 +434,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 128000,
 			MaxOutputTokens: 8192, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen-2.5-coder-32b-instruct"},
@@ -447,7 +447,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/qwen3:235b"},
@@ -461,7 +461,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-235b-a22b"},
@@ -487,7 +487,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/qwen3:32b"},
@@ -500,7 +500,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-32b"},
@@ -513,7 +513,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/qwen3:14b"},
@@ -526,7 +526,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 40960,
 			MaxOutputTokens: 40960, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-14b"},
@@ -539,7 +539,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 5000, MaxTokens: 32768,
 			MaxOutputTokens: 32768, ReservedOutputTokens: 8192,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/qwen3:8b"},
@@ -552,7 +552,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 128000,
 			MaxOutputTokens: 20000, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-8b"},
@@ -566,7 +566,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 128000,
 			MaxOutputTokens: 128000, ReservedOutputTokens: 16384,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/devstral:24b"},
@@ -581,7 +581,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 7500, MaxTokens: 128000,
 			MaxOutputTokens: 128000, ReservedOutputTokens: 30000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{VariantTag: "visible", IsDefaultVariant: true, Description: "(reasoning visible)", Overrides: BaseModelShared{IncludeReasoning: true}},
@@ -600,7 +600,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 10000, MaxTokens: 131072,
 			MaxOutputTokens: 131072, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOllama, ModelName: "ollama_chat/r1-1776:70b"},
@@ -614,7 +614,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 7500, MaxTokens: 127000,
 			MaxOutputTokens: 127000, ReservedOutputTokens: 30000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{VariantTag: "visible", IsDefaultVariant: true, Description: "(reasoning visible)", Overrides: BaseModelShared{IncludeReasoning: true}},
