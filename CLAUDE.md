@@ -17,26 +17,53 @@ Plandex is an AI coding agent terminal-based tool that can plan and execute larg
 - Python 3 (for LiteLLM proxy)
 - reflex 0.3.1 (`go install github.com/cespare/reflex@v0.3.1`)
 
+### Nix Development Environment
+
+**IMPORTANT: This project uses Nix for development. Always use nix-shell for building and running.**
+
+```bash
+# Enter the Nix development shell (from project root)
+nix-shell
+
+# Or run commands directly within nix-shell
+nix-shell --run "cd app/server && go build"
+nix-shell --run "cd app/cli && go build"
+```
+
+The `shell.nix` file provides:
+- Go 1.23.11
+- PostgreSQL 14
+- Python 3.13
+- All required development tools
+
 ### Build Commands
+
+**Note: Run all build commands within nix-shell or use `nix-shell --run "command"`**
 
 **CLI Build:**
 ```bash
+# Within nix-shell:
 cd app/cli
 go build -o plandex-dev
-# or use the dev script:
-./dev.sh
+
+# Or from outside nix-shell:
+nix-shell --run "cd app/cli && go build -o plandex-dev"
 ```
 
 **Server Build:**
 ```bash
+# Within nix-shell:
 cd app/server
 go build
+
+# Or from outside nix-shell:
+nix-shell --run "cd app/server && go build"
 ```
 
 **Full Development Mode (with hot reload):**
 ```bash
 # From root directory - builds both CLI and server with file watchers
-./app/scripts/dev.sh
+nix-shell --run "./app/scripts/dev.sh"
 ```
 
 **Docker Local Mode:**
@@ -48,12 +75,12 @@ cd app
 
 ### Testing
 ```bash
-# Smoke test (comprehensive test suite)
-./test/smoke_test.sh
+# Run tests within nix-shell:
+nix-shell --run "./test/smoke_test.sh"
 
 # Other test scripts available:
-./test/test_custom_models.sh
-./test/plan_deletion_test.sh
+nix-shell --run "./test/test_custom_models.sh"
+nix-shell --run "./test/plan_deletion_test.sh"
 ```
 
 ### Environment Variables
