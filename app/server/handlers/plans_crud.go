@@ -108,6 +108,35 @@ func CreatePlanHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Inject global context if not suppressed
+	if !requestBody.SuppressGlobalContext {
+		orgUserConfig, err := db.GetOrgUserConfig(auth.User.Id, auth.OrgId)
+		if err != nil {
+			log.Printf("Error getting org user config: %v\n", err)
+			// Don't fail plan creation if we can't get global context
+		} else if orgUserConfig != nil && orgUserConfig.GlobalContext != "" {
+			// Load the global context as a note
+			loadReq := shared.LoadContextRequest{
+				&shared.LoadContextParams{
+					ContextType: shared.ContextNoteType,
+					Name:        "Global Context",
+					Body:        orgUserConfig.GlobalContext,
+				},
+			}
+			
+			loadContexts(loadContextsParams{
+				w:          w,
+				r:          r,
+				auth:       auth,
+				loadReq:    &loadReq,
+				plan:       plan,
+				branchName: "", // Use default branch
+			})
+			
+			log.Printf("Injected global context for plan: %v\n", plan.Id)
+		}
+	}
+
 	resp := shared.CreatePlanResponse{
 		Id:   plan.Id,
 		Name: plan.Name,

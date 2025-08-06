@@ -90,7 +90,8 @@ type RenameProjectRequest struct {
 }
 
 type CreatePlanRequest struct {
-	Name string `json:"name"`
+	Name                  string `json:"name"`
+	SuppressGlobalContext bool   `json:"suppressGlobalContext,omitempty"`
 }
 
 type CreatePlanResponse struct {

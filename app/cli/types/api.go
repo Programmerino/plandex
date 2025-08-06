@@ -121,4 +121,8 @@ type ApiClient interface {
 	GetContextBody(planId, branch, contextId string) (*shared.GetContextBodyResponse, *shared.ApiError)
 	AutoLoadContext(ctx context.Context, planId, branch string, req shared.LoadContextRequest) (*shared.LoadContextResponse, *shared.ApiError)
 	GetBuildStatus(planId, branch string) (*shared.GetBuildStatusResponse, *shared.ApiError)
+
+	GetGlobalContext() (string, *shared.ApiError)
+	UpdateGlobalContext(content string) *shared.ApiError
+	DeleteGlobalContext() *shared.ApiError
 }

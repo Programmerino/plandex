@@ -187,6 +187,10 @@ func addApiRoutes(r *mux.Router, prefix string) {
 
 	HandlePlandexFn(r, prefix+"/org_user_config", false, handlers.GetOrgUserConfigHandler).Methods("GET")
 	HandlePlandexFn(r, prefix+"/org_user_config", false, handlers.UpdateOrgUserConfigHandler).Methods("PUT")
+
+	HandlePlandexFn(r, prefix+"/global_context", false, handlers.GetGlobalContextHandler).Methods("GET")
+	HandlePlandexFn(r, prefix+"/global_context", false, handlers.UpdateGlobalContextHandler).Methods("POST")
+	HandlePlandexFn(r, prefix+"/global_context", false, handlers.DeleteGlobalContextHandler).Methods("DELETE")
 }
 
 func addProxyableApiRoutes(r *mux.Router, prefix string) {

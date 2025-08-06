@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"plandex-cli/api"
 	"plandex-cli/auth"
@@ -17,6 +18,8 @@ import (
 
 var name string
 var contextBaseDir string
+var noGlobalContext bool
+var globalContextFile string
 
 // newCmd represents the new command
 var newCmd = &cobra.Command{
@@ -32,6 +35,8 @@ func init() {
 	RootCmd.AddCommand(newCmd)
 	newCmd.Flags().StringVarP(&name, "name", "n", "", "Name of the new plan")
 	newCmd.Flags().StringVar(&contextBaseDir, "context-dir", ".", "Base directory to auto-load context from")
+	newCmd.Flags().BoolVar(&noGlobalContext, "no-global-context", false, "Don't load the global context for this plan")
+	newCmd.Flags().StringVar(&globalContextFile, "global-context-file", "", "Override global context with content from this file")
 
 	AddNewPlanFlags(newCmd)
 }
@@ -48,7 +53,11 @@ func new(cmd *cobra.Command, args []string) {
 	var config *shared.PlanConfig
 
 	go func() {
-		res, apiErr := api.Client.CreatePlan(lib.CurrentProjectId, shared.CreatePlanRequest{Name: name})
+		req := shared.CreatePlanRequest{
+			Name: name,
+			SuppressGlobalContext: noGlobalContext || globalContextFile != "",
+		}
+		res, apiErr := api.Client.CreatePlan(lib.CurrentProjectId, req)
 		if apiErr != nil {
 			errCh <- fmt.Errorf("error creating plan: %v", apiErr.Msg)
 			return
@@ -93,6 +102,21 @@ func new(cmd *cobra.Command, args []string) {
 
 	fmt.Printf("✅ Started new plan %s and set it to current plan\n", color.New(color.Bold, term.ColorHiGreen).Sprint(name))
 	fmt.Printf("⚙️  Using default config\n")
+
+	// Handle global context file override
+	if globalContextFile != "" {
+		content, err := os.ReadFile(globalContextFile)
+		if err != nil {
+			term.OutputErrorAndExit("Error reading global context file: %v", err)
+		}
+		// Load the override context as a note
+		lib.MustLoadContext(nil, &types.LoadContextParams{
+			Note: string(content),
+		})
+		fmt.Printf("📋 Loaded global context from %s\n", globalContextFile)
+	} else if noGlobalContext {
+		fmt.Println("🚫 Global context disabled for this plan")
+	}
 
 	resolveAutoMode(config)
 
