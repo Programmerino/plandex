@@ -33,7 +33,7 @@ func GenPlanName(
 	baseModelConfig := config.GetBaseModelConfig(authVars, settings, orgUserConfig)
 
 	var sysPrompt string
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		sysPrompt = prompts.SysPlanNameXml
 	} else {
 		sysPrompt = prompts.SysPlanName
@@ -89,7 +89,7 @@ func GenPlanName(
 	var planName string
 	content := modelRes.Content
 
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		planName = utils.GetXMLContent(content, "planName")
 		if planName == "" {
 			return "", fmt.Errorf("No planName tag found in XML response")
@@ -145,7 +145,7 @@ func GenPipedDataName(
 
 	baseModelConfig := config.GetBaseModelConfig(authVars, settings, orgUserConfig)
 
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		sysPrompt = prompts.SysPipedDataNameXml
 	} else {
 		sysPrompt = prompts.SysPipedDataName
@@ -201,7 +201,7 @@ func GenPipedDataName(
 	var name string
 	content := modelRes.Content
 
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		name = utils.GetXMLContent(content, "name")
 		if name == "" {
 			return "", fmt.Errorf("No name tag found in XML response")
@@ -243,7 +243,9 @@ func GenNoteName(
 
 	baseModelConfig := config.GetBaseModelConfig(authVars, settings, orgUserConfig)
 
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	// Handle nil baseModelConfig (e.g., when no provider is available or model not found)
+	// Default to JSON/tool format if baseModelConfig is nil
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		sysPrompt = prompts.SysNoteNameXml
 	} else {
 		sysPrompt = prompts.SysNoteName
@@ -299,7 +301,7 @@ func GenNoteName(
 	var name string
 	content := modelRes.Content
 
-	if baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
+	if baseModelConfig != nil && baseModelConfig.PreferredOutputFormat == shared.ModelOutputFormatXml {
 		name = utils.GetXMLContent(content, "name")
 		if name == "" {
 			return "", fmt.Errorf("No name tag found in XML response")
