@@ -468,6 +468,19 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		},
 	},
 	{
+		ModelTag:    "qwen/qwen3-235b-a22b-instruct-2507",
+		Publisher:   ModelPublisherQwen,
+		Description: "Qwen 3-235B A22B Instruct 2507",
+		BaseModelShared: BaseModelShared{
+			DefaultMaxConvoTokens: 75000, MaxTokens: 262144,
+			MaxOutputTokens: 262144, ReservedOutputTokens: 20000,
+			PreferredOutputFormat: ModelOutputFormatXml,
+		},
+		Providers: []BaseModelUsesProvider{
+			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-235b-a22b-2507"},
+		},
+	},
+	{
 		ModelTag:    "qwen/qwen3-32b-local",
 		Publisher:   ModelPublisherQwen,
 		Description: "Qwen 3-32B (Local)",
