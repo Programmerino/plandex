@@ -174,7 +174,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
 			ReservedOutputTokens: 20000, SupportsCacheControl: true,
 			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
-			TokenEstimatePaddingPct: 0.10,
+			TokenEstimatePaddingPct: 0.10, ModelCompatibility: FullCompatibility,
 		},
 		Variants: []BaseModelConfigVariant{
 			{IsBaseVariant: true},
@@ -474,7 +474,7 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		BaseModelShared: BaseModelShared{
 			DefaultMaxConvoTokens: 75000, MaxTokens: 262144,
 			MaxOutputTokens: 262144, ReservedOutputTokens: 20000,
-			PreferredOutputFormat: ModelOutputFormatXml,
+			PreferredOutputFormat: ModelOutputFormatXml, ModelCompatibility: FullCompatibility,
 		},
 		Providers: []BaseModelUsesProvider{
 			{Provider: ModelProviderOpenRouter, ModelName: "qwen/qwen3-235b-a22b-2507"},
