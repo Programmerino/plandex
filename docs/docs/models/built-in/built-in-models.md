@@ -111,6 +111,16 @@ Plandex includes a curated selection of built-in models.
 - Features: XML output, cache control, single message mode
 - Providers: Anthropic, AWS Bedrock, Google Vertex, OpenRouter
 
+### `anthropic/claude-opus-4.1`
+
+- Anthropic Claude Opus 4.1
+- Max Tokens: 200k
+- Max Output: 128k
+- Reserved Output: 20k
+- Effective Input: 180k
+- Features: XML output, cache control, single message mode
+- Providers: Anthropic, AWS Bedrock, Google Vertex, OpenRouter
+
 ### `anthropic/claude-sonnet-4`
 
 - Anthropic Claude Sonnet 4

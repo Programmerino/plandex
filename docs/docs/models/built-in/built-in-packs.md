@@ -131,9 +131,9 @@ Plandex includes a curated selection of built-in model packs that have been test
 - **autoContinue** → `openai/o4-mini-low`
 
 ### `opus-planner`
-*Uses Claude Opus 4 for planning, default models for other roles. Supports up to 180k input context.*
+*Uses Claude Opus 4.1 for planning, default models for other roles. Supports up to 180k input context.*
 
-- **planner** → `anthropic/opus-4`
+- **planner** → `anthropic/claude-opus-4.1`
 - **architect** → Uses planner model
 - **coder** → `anthropic/claude-sonnet-4`
   - largeContextFallback → `openai/gpt-4.1`

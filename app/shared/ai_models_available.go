@@ -167,6 +167,35 @@ var BuiltInModels = []*BaseModelConfigSchema{
 		},
 	},
 	{
+		ModelTag:    "anthropic/claude-opus-4.1",
+		Publisher:   ModelPublisherAnthropic,
+		Description: "Anthropic Claude Opus 4.1",
+		BaseModelShared: BaseModelShared{
+			DefaultMaxConvoTokens: 15000, MaxTokens: 200000, MaxOutputTokens: 128000,
+			ReservedOutputTokens: 20000, SupportsCacheControl: true,
+			PreferredOutputFormat: ModelOutputFormatXml, SingleMessageNoSystemPrompt: true,
+			TokenEstimatePaddingPct: 0.10,
+		},
+		Variants: []BaseModelConfigVariant{
+			{IsBaseVariant: true},
+			// Opus thinking variant not working yet—might need a specific cap set
+			// {
+			// 	VariantTag: "thinking", Description: "thinking",
+			// 	Overrides: BaseModelShared{ReasoningBudget: AnthropicMaxReasoningBudget},
+			// 	Variants: []BaseModelConfigVariant{
+			// 		{VariantTag: "visible", IsDefaultVariant: true, Description: "visible", Overrides: BaseModelShared{IncludeReasoning: true}},
+			// 		{VariantTag: "hidden", Description: "hidden", Overrides: BaseModelShared{IncludeReasoning: false}},
+			// 	},
+			// },
+		},
+		Providers: []BaseModelUsesProvider{
+			{Provider: ModelProviderAnthropic, ModelName: "anthropic/claude-opus-4-1"},
+			{Provider: ModelProviderAmazonBedrock, ModelName: "bedrock/anthropic.claude-opus-4-1-20250805-v1:0"},
+			{Provider: ModelProviderGoogleVertex, ModelName: "vertex_ai/claude-opus-4-1@20250805"},
+			{Provider: ModelProviderOpenRouter, ModelName: "anthropic/claude-opus-4.1"},
+		},
+	},
+	{
 		ModelTag:    "anthropic/claude-sonnet-4",
 		Publisher:   ModelPublisherAnthropic,
 		Description: "Anthropic Claude Sonnet 4",
@@ -724,6 +753,7 @@ func GetAvailableModel(provider ModelProvider, modelId ModelId) *AvailableModel 
 var AnthropicLatestModelNameMap = map[ModelName]ModelName{
 	"anthropic/claude-sonnet-4-0":        "anthropic/claude-sonnet-4-20250514",
 	"anthropic/claude-opus-4-0":          "anthropic/claude-opus-4-20250514",
+	"anthropic/claude-opus-4-1":          "anthropic/claude-opus-4-1-20250805",
 	"anthropic/claude-3-7-sonnet-latest": "anthropic/claude-3-7-sonnet-20250219",
 	"anthropic/claude-3-5-haiku-latest":  "anthropic/claude-3-5-haiku-20241022",
 	"anthropic/claude-3-5-sonnet-latest": "anthropic/claude-3-5-sonnet-20241022",

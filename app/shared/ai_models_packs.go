@@ -316,27 +316,9 @@ func init() {
 
 	OpusPlannerSchema = ModelPackSchema{
 		Name:        "opus-planner",
-		Description: "Uses Claude Opus 4 for planning, default models for other roles. Supports up to 180k input context.",
+		Description: "Uses Claude Opus 4.1 for planning, default models for other roles. Supports up to 180k input context.",
 		ModelPackSchemaRoles: ModelPackSchemaRoles{
-			Planner: getModelRoleConfig(ModelRolePlanner, "anthropic/claude-opus-4"),
-			Coder: Pointer(getModelRoleConfig(ModelRoleCoder, "anthropic/claude-sonnet-4",
-				getLargeContextFallback(ModelRoleCoder, "openai/gpt-4.1"),
-			)),
-			PlanSummary: getModelRoleConfig(ModelRolePlanSummary, "openai/o4-mini-low"),
-			Builder:     defaultBuilder,
-			WholeFileBuilder: Pointer(getModelRoleConfig(ModelRoleWholeFileBuilder,
-				"openai/o4-mini-medium")),
-			Namer:      getModelRoleConfig(ModelRoleName, "openai/gpt-4.1-mini"),
-			CommitMsg:  getModelRoleConfig(ModelRoleCommitMsg, "openai/gpt-4.1-mini"),
-			ExecStatus: getModelRoleConfig(ModelRoleExecStatus, "openai/o4-mini-low"),
-		},
-	}
-
-	O3PlannerSchema = ModelPackSchema{
-		Name:        "o3-planner",
-		Description: "Uses Claude Opus 4 for planning, default models for other roles. Supports up to 180k input context.",
-		ModelPackSchemaRoles: ModelPackSchemaRoles{
-			Planner: getModelRoleConfig(ModelRolePlanner, "anthropic/opus-4"),
+			Planner: getModelRoleConfig(ModelRolePlanner, "anthropic/claude-opus-4.1"),
 			Coder: Pointer(getModelRoleConfig(ModelRoleCoder, "anthropic/claude-sonnet-4",
 				getLargeContextFallback(ModelRoleCoder, "openai/gpt-4.1"),
 			)),

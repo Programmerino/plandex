@@ -38,7 +38,7 @@ Model roles can either be a string (the model ID) or an object with model config
 ```json
 {
   "$schema": "https://plandex.ai/schemas/model-pack-inline.schema.json",
-  "planner": "anthropic/claude-opus-4",
+  "planner": "anthropic/claude-opus-4.1",
   "coder": "anthropic/claude-sonnet-4",
   "architect": "anthropic/claude-sonnet-4",
   "summarizer": "anthropic/claude-3.5-haiku",
@@ -57,7 +57,7 @@ You can also configure individual role settings and fallbacks with an object:
 {
   "$schema": "https://plandex.ai/schemas/model-pack-inline.schema.json",
   "planner": {
-    "modelId": "anthropic/claude-opus-4",
+    "modelId": "anthropic/claude-opus-4.1",
     "temperature": 0.7,
     "topP": 0.9,
     "largeContextFallback": "google/gemini-2.5-pro"

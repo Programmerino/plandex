@@ -237,7 +237,7 @@ Here's a full example combining `providers`, `models`, and `modelPacks`:
     {
       "name": "hybrid-local-cloud",
       "description": "Local models for simple tasks, cloud for complex",
-      "planner": "anthropic/claude-opus-4",
+      "planner": "anthropic/claude-opus-4.1",
       "coder": "anthropic/claude-sonnet-4",
       "architect": "anthropic/claude-sonnet-4",
       "summarizer": "llama-4-maverick-70b",
